@@ -41,6 +41,12 @@ const caption = css`
   line-height: 16px;
 `;
 
+const captionMedium = css`
+  font-weight: 500;
+  font-size: 14px;
+  line-height: 22px;
+`;
+
 const small = css`
   font-weight: 500;
   font-size: 10px;
@@ -55,5 +61,6 @@ export const typography = {
   body2,
   body2bold,
   caption,
+  captionMedium,
   small,
 };

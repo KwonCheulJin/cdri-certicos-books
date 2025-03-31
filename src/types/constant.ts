@@ -11,6 +11,5 @@ export const breakpoints = {
 } as const;
 
 export const localStorageKey = {
-  applyUserInfo: 'apply-user-info',
-  applyContestName: 'apply-contest-name',
+  storedKeywords: 'stored-keywords',
 } as const;
