@@ -1,6 +1,7 @@
 import XmarkSmallSvg from '@/assets/xmark-small.svg?react';
 import Button from '@/components/common/Button';
-import Select from '@/components/common/Select';
+import Select from '@/components/search/Select';
+
 import { typography } from '@/styles/typography';
 import { SearchCategoryItem } from '@/types/constant';
 import { Dispatch, RefObject, SetStateAction } from 'react';
