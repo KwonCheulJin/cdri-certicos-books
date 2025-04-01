@@ -7,7 +7,7 @@ export default function NavBar() {
     <Header>
       <NavLink to={'/'}>
         <Typography
-          $variant="title1"
+          variant="title1"
           style={{ minWidth: '207px', marginRight: '113px' }}
         >
           CERTICOS BOOKS
