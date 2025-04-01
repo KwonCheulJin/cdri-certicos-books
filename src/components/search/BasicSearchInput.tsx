@@ -34,8 +34,8 @@ const Container = styled.div<ContainerProps>`
 
 const Input = styled.input`
   width: 100%;
-  border: none;
   background-color: ${props => props.theme.palette.lightGray};
+  border: none;
   ${typography['caption']};
   &:focus {
     outline: none;

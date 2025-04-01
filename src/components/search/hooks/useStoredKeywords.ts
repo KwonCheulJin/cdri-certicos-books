@@ -1,11 +1,11 @@
-import { localStorageKey } from '@/types/constant';
+import { LOCAL_STORAGE_KEY } from '@/types/constant';
 import { useCallback, useEffect, useState } from 'react';
 
 // 커스텀 이벤트 이름 정의
 const STORAGE_UPDATE_EVENT = 'localStorageUpdate';
 
 const getStoredKeywords = (): string[] => {
-  const stored = localStorage.getItem(localStorageKey.storedKeywords);
+  const stored = localStorage.getItem(LOCAL_STORAGE_KEY.storedKeywords);
   return stored ? JSON.parse(stored) : [];
 };
 
@@ -15,14 +15,14 @@ export default function useStoredKeywords() {
   const updateStoredKeywords = (keywords: string[]) => {
     setKeywords(keywords);
     localStorage.setItem(
-      localStorageKey.storedKeywords,
+      LOCAL_STORAGE_KEY.storedKeywords,
       JSON.stringify(keywords)
     );
 
     // 커스텀 이벤트 발생
     window.dispatchEvent(
       new CustomEvent(STORAGE_UPDATE_EVENT, {
-        detail: { key: localStorageKey.storedKeywords, value: keywords },
+        detail: { key: LOCAL_STORAGE_KEY.storedKeywords, value: keywords },
       })
     );
   };
@@ -49,7 +49,7 @@ export default function useStoredKeywords() {
   useEffect(() => {
     // 외부 탭/윈도우의 변경사항을 처리하는 핸들러
     const handleStorageChange = (e: StorageEvent) => {
-      if (e.key === localStorageKey.storedKeywords) {
+      if (e.key === LOCAL_STORAGE_KEY.storedKeywords) {
         const newKeywords = e.newValue ? JSON.parse(e.newValue) : [];
         setKeywords(newKeywords);
       }
@@ -57,7 +57,7 @@ export default function useStoredKeywords() {
 
     // 같은 탭/윈도우의 변경사항을 처리하는 핸들러
     const handleCustomEvent = (e: CustomEvent) => {
-      if (e.detail.key === localStorageKey.storedKeywords) {
+      if (e.detail.key === LOCAL_STORAGE_KEY.storedKeywords) {
         setKeywords(e.detail.value);
       }
     };

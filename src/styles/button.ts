@@ -33,16 +33,23 @@ export const buttonVariants = {
 
 const full = css`
   width: 100%;
-`;
-
-const base = css`
-  padding: 16px 28px;
+  padding: 5px 10px;
+  height: 36px;
 `;
 
 const small = css`
   box-sizing: border-box;
   padding: 10px;
   height: 36px;
+`;
+
+const base = css`
+  padding: 16px 28px;
+`;
+
+const large = css`
+  width: 240px;
+  padding: 13px 20px;
 `;
 
 const icon = css`
@@ -53,5 +60,6 @@ export const buttonSize = {
   full,
   base,
   small,
+  large,
   icon,
 };

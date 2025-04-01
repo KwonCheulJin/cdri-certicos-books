@@ -1,3 +1,5 @@
+import { ValueOf } from '@/types/utils';
+
 export const screen = {
   mobile: 600,
   tablet: 1279,
@@ -10,6 +12,22 @@ export const breakpoints = {
   desktop: `${screen.desktop}px`,
 } as const;
 
-export const localStorageKey = {
+export const LOCAL_STORAGE_KEY = {
   storedKeywords: 'stored-keywords',
 } as const;
+
+export const SEARCH_CATEGORY_ITEMS = [
+  { id: 'title', value: '제목' },
+  { id: 'person', value: '저자명' },
+  { id: 'publisher', value: '출판사' },
+  { id: 'isbn', value: 'ISBN' },
+] as const;
+
+export type SearchCategoryItem = (typeof SEARCH_CATEGORY_ITEMS)[number];
+
+export const SEARCH_TYPE = {
+  BASIC: 'BASIC',
+  DETAIL: 'DETAIL',
+} as const;
+
+export type SearchType = ValueOf<typeof SEARCH_TYPE>;

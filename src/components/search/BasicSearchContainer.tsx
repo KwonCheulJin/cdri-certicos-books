@@ -19,6 +19,7 @@ export default function BasicSearchContainer() {
       <Container>
         <BasicSearchInput
           ref={inputRef}
+          type="text"
           onKeyDown={handleSearch}
           onFocus={handleFocus}
           onBlur={handleBlur}

@@ -35,7 +35,7 @@ const Component = styled.button<ButtonProps>`
   cursor: pointer;
   white-space: nowrap;
   border-radius: 8px;
-  padding: 13px 20px;
+  box-sizing: border-box;
   ${typography['caption']}
   ${({ $variant }) => buttonVariants[$variant]}
   ${({ $size }) => buttonSize[$size]}

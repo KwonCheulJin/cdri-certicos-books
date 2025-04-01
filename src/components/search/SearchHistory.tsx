@@ -48,6 +48,12 @@ const Container = styled.ul`
   width: 480px;
   background-color: ${props => props.theme.palette.lightGray};
   padding: 20px 25px 28px 46px;
+  position: absolute;
+  top: 100%;
+  left: 0;
+  right: 0;
+  list-style: none;
+  z-index: 10;
 `;
 
 const KeywordItem = styled.li`

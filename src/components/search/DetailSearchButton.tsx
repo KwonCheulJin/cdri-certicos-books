@@ -1,10 +1,18 @@
 import Button from '@/components/common/Button';
 import styled from 'styled-components';
 
-export default function DetailSearchButton() {
+interface Props {
+  handleModalOpen: () => void;
+}
+export default function DetailSearchButton({ handleModalOpen }: Props) {
   return (
     <Container>
-      <Button variant="outline" size="small" font="body2">
+      <Button
+        variant="outline"
+        size="small"
+        font="body2"
+        onClick={handleModalOpen}
+      >
         상세검색
       </Button>
       <div id="detail-modal-portal" />
@@ -14,5 +22,4 @@ export default function DetailSearchButton() {
 
 const Container = styled.div`
   position: relative;
-  margin-top: 8px;
 `;
