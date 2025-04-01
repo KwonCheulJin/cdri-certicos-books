@@ -52,6 +52,11 @@ const small = css`
   font-size: 10px;
   line-height: 10px;
 `;
+const thin = css`
+  font-weight: 350;
+  font-size: 18px;
+  line-height: 18px;
+`;
 
 export const typography = {
   title1,
@@ -63,4 +68,5 @@ export const typography = {
   caption,
   captionMedium,
   small,
+  thin,
 };
