@@ -9,7 +9,9 @@ export default function useDetailSearch() {
   const [isModalOpen, setIsModalOpen] = useState(false);
   const [selectedItem, setSelectedItem] =
     useState<SearchCategoryItem>(initialSelectedItem);
-  const { searchType, setSearchType } = useSearchStore();
+  const { searchType, setSearchType, setSearchQuery } = useSearchStore(
+    state => state
+  );
 
   const handleSearch = useCallback(() => {
     if (inputRef.current) {
@@ -18,9 +20,10 @@ export default function useDetailSearch() {
         inputRef.current.value = '';
         return;
       }
+      setSearchQuery({ query: keyword, target: selectedItem.id });
       inputRef.current.value = keyword;
     }
-  }, []);
+  }, [selectedItem.id, setSearchQuery]);
 
   const handleModalOpen = useCallback(() => {
     setIsModalOpen(true);

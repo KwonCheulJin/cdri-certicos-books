@@ -3,7 +3,7 @@ import { typography } from '@/styles/typography';
 import React, { JSX } from 'react';
 import styled from 'styled-components';
 
-type Variant = keyof typeof typography;
+export type Variant = keyof typeof typography;
 type TextColor = keyof typeof theme.text;
 
 interface Props {
@@ -26,6 +26,8 @@ const Typography: React.FC<Props> = ({
     body1: 'p',
     body2: 'p',
     body2bold: 'p',
+    thin: 'p',
+    thinStrike: 'p',
     caption: 'span',
     captionMedium: 'span',
     small: 'small',
@@ -50,4 +52,7 @@ interface TypographyProps {
 const Component = styled.div<TypographyProps>`
   color: ${({ $color }) => theme.text[$color]};
   ${({ $variant }) => typography[$variant]};
+  word-wrap: break-word;
+  word-break: keep-all;
+  white-space: normal;
 `;

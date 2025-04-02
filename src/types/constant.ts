@@ -23,11 +23,17 @@ export const SEARCH_CATEGORY_ITEMS = [
   { id: 'isbn', value: 'ISBN' },
 ] as const;
 
-export type SearchCategoryItem = (typeof SEARCH_CATEGORY_ITEMS)[number];
-
 export const SEARCH_TYPE = {
   BASIC: 'BASIC',
   DETAIL: 'DETAIL',
 } as const;
+
+export const MAX_THUMBNAIL_IMAGE = {
+  width: 232,
+  height: 328,
+} as const;
+
+export type SearchCategoryItem = (typeof SEARCH_CATEGORY_ITEMS)[number];
+export type SearchTarget = (typeof SEARCH_CATEGORY_ITEMS)[number]['id'];
 
 export type SearchType = ValueOf<typeof SEARCH_TYPE>;

@@ -1,15 +1,17 @@
 import Typography from '@/components/common/Typhography';
 import BasicSearchContainer from '@/components/search/BasicSearchContainer';
 import DetailSearchContainer from '@/components/search/DetailSearchContainer';
+import useSearchInfiniteScroll from '@/components/search/hooks/useSearchInfiniteScroll';
 import SearchBookItem from '@/components/search/SearchBookItem';
 import { theme } from '@/styles/theme';
 import { useState } from 'react';
 import styled from 'styled-components';
 
 export default function SearchPage() {
-  const [currentId, setCurrentId] = useState<string | null>(null);
-  const toggleItem = (id: string) => () => {
-    setCurrentId(prev => (prev === id ? null : id));
+  const { data, moreRef } = useSearchInfiniteScroll();
+  const [openBookId, setOpenBookId] = useState<string | null>(null);
+  const handleToggle = (id: string) => () => {
+    setOpenBookId(prev => (prev === id ? null : id));
   };
   return (
     <Container>
@@ -26,19 +28,28 @@ export default function SearchPage() {
         <Typography variant="caption">도서 검색 결과</Typography>
         <ResultCountContainer>
           <Typography variant="caption">총</Typography>
-          {/* 책 검색하기 api의 meta(total_count)로 결과 개수 보여주기 */}
           <Typography
             variant="caption"
             style={{ color: `${theme.palette.primary}`, marginLeft: 6 }}
           >
-            21
+            {data?.pages[0].totalCount ?? 0}
           </Typography>
           <Typography variant="caption">건</Typography>
         </ResultCountContainer>
       </SearchResultContainer>
       <ul>
-        <SearchBookItem />
+        {data?.pages.map(page =>
+          page.content.map(book => (
+            <SearchBookItem
+              key={book.id}
+              book={book}
+              isOpen={openBookId === book.id}
+              onToggle={handleToggle(book.id)}
+            />
+          ))
+        )}
       </ul>
+      <div ref={moreRef} />
     </Container>
   );
 }
