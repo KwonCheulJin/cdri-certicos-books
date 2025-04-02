@@ -47,6 +47,10 @@ const base = css`
   padding: 16px 28px;
 `;
 
+const accordion = css`
+  padding: 16px 17px 16px 20px;
+`;
+
 const large = css`
   width: 240px;
   padding: 13px 20px;
@@ -62,4 +66,5 @@ export const buttonSize = {
   small,
   large,
   icon,
+  accordion,
 };

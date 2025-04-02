@@ -53,6 +53,19 @@ const small = css`
   line-height: 10px;
 `;
 
+const thin = css`
+  font-weight: 350;
+  font-size: 18px;
+  line-height: 18px;
+`;
+
+const thinStrike = css`
+  font-weight: 350;
+  font-size: 18px;
+  line-height: 18px;
+  text-decoration: line-through;
+`;
+
 export const typography = {
   title1,
   title2,
@@ -63,4 +76,6 @@ export const typography = {
   caption,
   captionMedium,
   small,
+  thin,
+  thinStrike,
 };

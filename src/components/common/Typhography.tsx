@@ -1,21 +1,21 @@
-import { theme } from '@/styles/theme.ts';
+import { theme } from '@/styles/theme';
 import { typography } from '@/styles/typography';
 import React, { JSX } from 'react';
 import styled from 'styled-components';
 
-type Variant = keyof typeof typography;
-type Text = keyof typeof theme.text;
+export type Variant = keyof typeof typography;
+type TextColor = keyof typeof theme.text;
 
 interface Props {
   variant: Variant;
-  text?: Text;
+  color?: TextColor;
   children: React.ReactNode;
   style?: React.CSSProperties;
 }
 
 const Typography: React.FC<Props> = ({
   variant,
-  text = 'primary',
+  color = 'primary',
   children,
   style,
 }) => {
@@ -26,6 +26,8 @@ const Typography: React.FC<Props> = ({
     body1: 'p',
     body2: 'p',
     body2bold: 'p',
+    thin: 'p',
+    thinStrike: 'p',
     caption: 'span',
     captionMedium: 'span',
     small: 'small',
@@ -34,7 +36,7 @@ const Typography: React.FC<Props> = ({
   const tag = variantsMapping[variant] as keyof JSX.IntrinsicElements;
 
   return (
-    <Component as={tag} $variant={variant} $text={text} style={style}>
+    <Component as={tag} $variant={variant} $color={color} style={style}>
       {children}
     </Component>
   );
@@ -44,10 +46,13 @@ export default Typography;
 
 interface TypographyProps {
   $variant: Variant;
-  $text: Text;
+  $color: TextColor;
   as: keyof JSX.IntrinsicElements;
 }
 const Component = styled.div<TypographyProps>`
-  ${({ $variant }) => typography[$variant]}
-  ${({ $text }) => theme.text[$text]}
+  color: ${({ $color }) => theme.text[$color]};
+  ${({ $variant }) => typography[$variant]};
+  word-wrap: break-word;
+  word-break: keep-all;
+  white-space: normal;
 `;
