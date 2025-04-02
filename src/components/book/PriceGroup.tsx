@@ -1,4 +1,4 @@
-import Typography, { Variant } from '@/components/common/Typhography';
+import Typography, { Variant } from '@/components/common/Typography';
 import styled from 'styled-components';
 
 interface Props {

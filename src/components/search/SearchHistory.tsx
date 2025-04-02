@@ -1,8 +1,8 @@
 import XmarkSvg from '@/assets/xmark.svg?react';
 import Button from '@/components/common/Button';
-import Typography from '@/components/common/Typhography';
-import useBasicSearch from '@/components/search/hooks/useBasicSearch';
-import useStoredKeywords from '@/components/search/hooks/useStoredKeywords';
+import Typography from '@/components/common/Typography';
+import useBasicSearch from '@/components/search/hook/useBasicSearch';
+import useStoredKeywords from '@/components/search/hook/useStoredKeywords';
 import { createPortal } from 'react-dom';
 import styled from 'styled-components';
 

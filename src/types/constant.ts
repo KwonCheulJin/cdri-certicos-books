@@ -14,6 +14,8 @@ export const breakpoints = {
 
 export const LOCAL_STORAGE_KEY = {
   storedKeywords: 'stored-keywords',
+  storedSavedBooks: 'stored-saved-books',
+  storedSavedBookIds: 'stored-saved-book-ids',
 } as const;
 
 export const SEARCH_CATEGORY_ITEMS = [

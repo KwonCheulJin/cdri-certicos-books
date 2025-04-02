@@ -1,4 +1,6 @@
-import Typography from '@/components/common/Typhography';
+import useSavedBook from '@/components/book/hook/useSavedBook';
+import LikeWrapper from '@/components/book/LikeWrapper';
+import Typography from '@/components/common/Typography';
 import { CommonProps } from '@/components/search/SearchBookItem';
 import { typography } from '@/styles/typography';
 import { BookInfo } from '@/types/search-book';
@@ -9,15 +11,23 @@ interface Props {
   isOpen: boolean;
 }
 export default function BookInfoSection({ info, isOpen }: Props) {
-  const { title, author, thumbnail, contents } = info;
+  const { id, title, author, thumbnail, contents } = info;
+  const { savedBookIds, toggleSavedBookId } = useSavedBook();
+
   return (
     <Container $isOpen={isOpen}>
-      <Image
-        $isOpen={isOpen}
-        src={isOpen ? thumbnail.large : thumbnail.small}
-        alt={title}
-        loading="lazy"
-      />
+      <LikeWrapper
+        isOpen={isOpen}
+        isLike={savedBookIds[id]}
+        onToggleLike={toggleSavedBookId(info)}
+      >
+        <Image
+          $isOpen={isOpen}
+          src={isOpen ? thumbnail.large : thumbnail.small}
+          alt={title}
+          loading="lazy"
+        />
+      </LikeWrapper>
       <BookSection $isOpen={isOpen}>
         <BookInfoContainer $isOpen={isOpen}>
           <Typography

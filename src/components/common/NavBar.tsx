@@ -1,5 +1,5 @@
 import NavLink from '@/components/common/NavLink';
-import Typography from '@/components/common/Typhography';
+import Typography from '@/components/common/Typography';
 import styled from 'styled-components';
 
 export default function NavBar() {

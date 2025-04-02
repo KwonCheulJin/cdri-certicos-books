@@ -1,4 +1,4 @@
-import useStoredKeywords from '@/components/search/hooks/useStoredKeywords';
+import useStoredKeywords from '@/components/search/hook/useStoredKeywords';
 import { useSearchStore } from '@/store/useSearchStore';
 import { KeyboardEvent, useCallback, useEffect, useRef, useState } from 'react';
 
@@ -32,6 +32,9 @@ export default function useBasicSearch() {
   }, [setSearchType]);
 
   const handleBlur = useCallback(() => {
+    if (inputRef.current) {
+      inputRef.current.blur();
+    }
     setIsFocused(false);
   }, []);
 
