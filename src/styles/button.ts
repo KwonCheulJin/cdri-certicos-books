@@ -60,6 +60,11 @@ const icon = css`
   padding: 4px;
 `;
 
+const cover = css`
+  width: 100%;
+  height: 100%;
+`;
+
 export const buttonSize = {
   full,
   base,
@@ -67,4 +72,5 @@ export const buttonSize = {
   large,
   icon,
   accordion,
+  cover,
 };

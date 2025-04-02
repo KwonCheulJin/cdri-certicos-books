@@ -1,7 +1,8 @@
-import Typography from '@/components/common/Typhography';
+import Typography from '@/components/common/Typography';
 import BasicSearchContainer from '@/components/search/BasicSearchContainer';
 import DetailSearchContainer from '@/components/search/DetailSearchContainer';
-import useSearchInfiniteScroll from '@/components/search/hooks/useSearchInfiniteScroll';
+import EmptySearchBook from '@/components/search/EmptySearchBook';
+import useSearchInfiniteScroll from '@/components/search/hook/useSearchInfiniteScroll';
 import SearchBookItem from '@/components/search/SearchBookItem';
 import { theme } from '@/styles/theme';
 import { useState } from 'react';
@@ -13,6 +14,7 @@ export default function SearchPage() {
   const handleToggle = (id: string) => () => {
     setOpenBookId(prev => (prev === id ? null : id));
   };
+
   return (
     <Container>
       <SearchFormContainer>
@@ -37,19 +39,25 @@ export default function SearchPage() {
           <Typography variant="caption">건</Typography>
         </ResultCountContainer>
       </SearchResultContainer>
-      <ul>
-        {data?.pages.map(page =>
-          page.content.map(book => (
-            <SearchBookItem
-              key={book.id}
-              book={book}
-              isOpen={openBookId === book.id}
-              onToggle={handleToggle(book.id)}
-            />
-          ))
-        )}
-      </ul>
-      <div ref={moreRef} />
+      {data ? (
+        <>
+          <ul>
+            {data.pages.map(page =>
+              page.content.map(book => (
+                <SearchBookItem
+                  key={book.id}
+                  book={book}
+                  isOpen={openBookId === book.id}
+                  onToggle={handleToggle(book.id)}
+                />
+              ))
+            )}
+          </ul>
+          <div ref={moreRef} />
+        </>
+      ) : (
+        <EmptySearchBook />
+      )}
     </Container>
   );
 }

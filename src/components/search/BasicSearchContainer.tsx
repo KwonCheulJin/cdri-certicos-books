@@ -1,6 +1,6 @@
 import BasicSearchInput from '@/components/search/BasicSearchInput';
-import useBasicSearch from '@/components/search/hooks/useBasicSearch';
-import useStoredKeywords from '@/components/search/hooks/useStoredKeywords';
+import useBasicSearch from '@/components/search/hook/useBasicSearch';
+import useStoredKeywords from '@/components/search/hook/useStoredKeywords';
 import SearchHistory from '@/components/search/SearchHistory';
 import { useEffect, useState } from 'react';
 import styled from 'styled-components';

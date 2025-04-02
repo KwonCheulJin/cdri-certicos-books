@@ -2,7 +2,7 @@ import ArrowDownSvg from '@/assets/arrow-down-large.svg?react';
 import PriceGroup from '@/components/book/PriceGroup';
 import PurchaseButton from '@/components/book/PurchaseButton';
 import Button from '@/components/common/Button';
-import Typography from '@/components/common/Typhography';
+import Typography from '@/components/common/Typography';
 import { CommonProps } from '@/components/search/SearchBookItem';
 import { BookInfo } from '@/types/search-book';
 import styled from 'styled-components';

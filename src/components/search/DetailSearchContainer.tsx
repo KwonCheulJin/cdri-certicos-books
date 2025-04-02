@@ -1,6 +1,6 @@
 import DetailSearchButton from '@/components/search/DetailSearchButton';
 import DetailSearchModal from '@/components/search/DetailSearchModal';
-import useDetailSearch from '@/components/search/hooks/useDetailSearch';
+import useDetailSearch from '@/components/search/hook/useDetailSearch';
 
 export default function DetailSearchContainer() {
   const {

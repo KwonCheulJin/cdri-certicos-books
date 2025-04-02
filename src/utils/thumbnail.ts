@@ -6,8 +6,8 @@ export function generateThumbnailUrls(thumbnail: string): {
 } {
   if (!thumbnail) {
     return {
-      small: '/default-image.png',
-      large: '/default-image.png',
+      small: '/default-image.webp',
+      large: '/default-image.webp',
     };
   }
   const largeSize = `R${MAX_THUMBNAIL_IMAGE.width}x${MAX_THUMBNAIL_IMAGE.height}`;
