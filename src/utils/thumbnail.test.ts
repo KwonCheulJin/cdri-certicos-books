@@ -11,12 +11,12 @@ describe('generateThumbnailUrls', () => {
 
     expect(result).toEqual({ small: defaultUrl, large: generateUrl });
   });
-  test(`빈 문자('')를 전달하면 { small: '/default-image.png', large: '/default-image.png' }로 변환된 객체가 반환된다.`, () => {
+  test(`빈 문자('')를 전달하면 { small: '/default-image.webp', large: '/default-image.webp' }로 변환된 객체가 반환된다.`, () => {
     const result = generateThumbnailUrls('');
 
     expect(result).toEqual({
-      small: '/default-image.png',
-      large: '/default-image.png',
+      small: '/default-image.webp',
+      large: '/default-image.webp',
     });
   });
 });
