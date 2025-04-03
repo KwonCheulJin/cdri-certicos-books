@@ -1,17 +1,10 @@
-import { LOCAL_STORAGE_KEY } from '@/types/constant';
-import { storageManager } from '@/utils/localStorageManager';
+import { searchStorage } from '@/storage/search';
 import { useCallback, useEffect, useState } from 'react';
 
-const getStoredKeywords = (): string[] => {
-  return storageManager.getItem(LOCAL_STORAGE_KEY.storedKeywords) || [];
-};
-
-const updateStoredKeywords = (keywords: string[]) => {
-  storageManager.setItem(LOCAL_STORAGE_KEY.storedKeywords, keywords);
-};
-
 export default function useStoredKeywords() {
-  const [keywords, setKeywords] = useState<string[]>(() => getStoredKeywords());
+  const [keywords, setKeywords] = useState<string[]>(() =>
+    searchStorage.getKeywords()
+  );
 
   const setStoredKeywords = useCallback(
     (keyword: string) => {
@@ -19,7 +12,7 @@ export default function useStoredKeywords() {
       if (isDuplicate) return;
       const updateKeywords = [keyword, ...keywords].slice(0, 8);
 
-      updateStoredKeywords(updateKeywords);
+      searchStorage.updateKeywords(updateKeywords);
     },
     [keywords]
   );
@@ -28,16 +21,20 @@ export default function useStoredKeywords() {
     (keyword: string) => {
       const updateKeywords = keywords.filter(item => item !== keyword);
 
-      updateStoredKeywords(updateKeywords);
+      searchStorage.updateKeywords(updateKeywords);
     },
     [keywords]
   );
 
-  useEffect(() => {
-    return storageManager.subscribe(LOCAL_STORAGE_KEY.storedKeywords, value => {
+  const subscribeToStorage = useCallback(() => {
+    return searchStorage.subscribe(value => {
       setKeywords((value as string[]) || []);
     });
   }, []);
+
+  useEffect(() => {
+    return subscribeToStorage();
+  }, [subscribeToStorage]);
 
   return { keywords, setStoredKeywords, removeStoredKeyword };
 }

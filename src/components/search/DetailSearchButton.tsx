@@ -1,4 +1,5 @@
 import Button from '@/components/common/Button';
+import { PORTAL_ID } from '@/types/constant';
 import styled from 'styled-components';
 
 interface Props {
@@ -15,7 +16,7 @@ export default function DetailSearchButton({ handleModalOpen }: Props) {
       >
         상세검색
       </Button>
-      <div id="detail-modal-portal" />
+      <div id={PORTAL_ID.detailModal} />
     </Container>
   );
 }

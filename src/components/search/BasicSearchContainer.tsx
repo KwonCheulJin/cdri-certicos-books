@@ -2,18 +2,18 @@ import BasicSearchInput from '@/components/search/BasicSearchInput';
 import useBasicSearch from '@/components/search/hook/useBasicSearch';
 import useStoredKeywords from '@/components/search/hook/useStoredKeywords';
 import SearchHistory from '@/components/search/SearchHistory';
-import { useEffect, useState } from 'react';
+import { PORTAL_ID } from '@/types/constant';
+import { useMemo } from 'react';
 import styled from 'styled-components';
 
 export default function BasicSearchContainer() {
   const { inputRef, handleSearch, isFocused, handleFocus, handleBlur } =
     useBasicSearch();
   const { keywords } = useStoredKeywords();
-  const [isVisible, setIsVisible] = useState(false);
-
-  useEffect(() => {
-    setIsVisible(keywords.length > 0 && isFocused);
-  }, [isFocused, keywords.length]);
+  const isVisible = useMemo(
+    () => keywords.length > 0 && isFocused,
+    [isFocused, keywords.length]
+  );
   return (
     <>
       <Container>
@@ -24,8 +24,10 @@ export default function BasicSearchContainer() {
           onFocus={handleFocus}
           onBlur={handleBlur}
           isSearchHistory={isVisible}
+          aria-label="도서 검색 입력"
+          placeholder="검색어를 입력하세요"
         />
-        <div id="history-portal" />
+        <div id={PORTAL_ID.history} />
       </Container>
       {isVisible && <SearchHistory />}
     </>

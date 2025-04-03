@@ -3,7 +3,7 @@ import { typography } from '@/styles/typography';
 import { SearchCategoryItem } from '@/types/constant';
 import { useSelect } from 'downshift';
 import { Dispatch, SetStateAction } from 'react';
-import styled from 'styled-components';
+import styled, { css } from 'styled-components';
 
 function itemToString(item: SearchCategoryItem | null) {
   return item ? item.value : '';
@@ -35,8 +35,14 @@ export default function Select({
 
   return (
     <SelectBox>
-      <SelectTrigger {...getToggleButtonProps()}>
-        <span>{selectedItem ? selectedItem.value : items[0].value}</span>
+      <SelectTrigger
+        {...getToggleButtonProps()}
+        aria-labelledby="select-label"
+        aria-expanded={isOpen}
+      >
+        <span id="select-label">
+          {selectedItem ? selectedItem.value : items[0].value}
+        </span>
         <ArrowDownIcon $isOpen={isOpen} />
       </SelectTrigger>
       <SelectList $isOpen={isOpen} {...getMenuProps()}>
@@ -84,8 +90,9 @@ const ArrowDownIcon = styled(ArrowDownSvg)<CommonProps>`
   width: 20px;
   height: 20px;
   padding: 8px 5.5px 6px 4px;
-  transform: ${({ $isOpen }) =>
-    `${$isOpen ? 'rotate(180deg)' : 'rotate(0deg)'}`};
+  ${({ $isOpen }) => css`
+    transform: ${$isOpen ? 'rotate(180deg)' : 'rotate(0deg)'};
+  `}
   transition: transform 0.3s ease-in-out;
 `;
 

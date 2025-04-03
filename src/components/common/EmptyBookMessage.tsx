@@ -1,11 +1,15 @@
 import Typography from '@/components/common/Typography';
 import styled from 'styled-components';
-export default function EmptySearchBook() {
+
+interface Props {
+  message: string;
+}
+export default function EmptySearchBook({ message }: Props) {
   return (
     <Container>
       <BookIcon src="/book.webp" alt="book-icon" />
       <Typography variant="caption" color="secondary">
-        검색된 결과가 없습니다.
+        {message}
       </Typography>
     </Container>
   );

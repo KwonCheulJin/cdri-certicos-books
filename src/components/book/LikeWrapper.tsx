@@ -1,7 +1,7 @@
 import LikeEmptySvg from '@/assets/like-empty.svg?react';
 import LikeFullSvg from '@/assets/like.svg?react';
 import Button from '@/components/common/Button';
-import { CommonProps } from '@/components/search/SearchBookItem';
+import { CommonStyle } from '@/types/common';
 import { ReactNode } from 'react';
 import styled from 'styled-components';
 interface Props {
@@ -35,7 +35,7 @@ export default function LikeWrapper({
   );
 }
 
-const ButtonContainer = styled(Button)<CommonProps>`
+const ButtonContainer = styled(Button)<CommonStyle>`
   width: ${({ $isOpen }) => `${$isOpen ? '210px' : '48px'}`};
   height: ${({ $isOpen }) => `${$isOpen ? '280px' : '68px'}`};
   position: relative;
@@ -48,7 +48,7 @@ const IconContainer = styled.div`
   z-index: 9;
 `;
 
-const LikeFullIcon = styled(LikeFullSvg)<CommonProps>`
+const LikeFullIcon = styled(LikeFullSvg)<CommonStyle>`
   width: ${({ $isOpen }) => `${$isOpen ? '24px' : '16px'}`};
   height: ${({ $isOpen }) => `${$isOpen ? '24px' : '16px'}`};
   position: absolute;
@@ -56,7 +56,7 @@ const LikeFullIcon = styled(LikeFullSvg)<CommonProps>`
   right: 0;
   padding: ${({ $isOpen }) => `${$isOpen ? '8px' : '2px'}`};
 `;
-const LikeEmptyIcon = styled(LikeEmptySvg)<CommonProps>`
+const LikeEmptyIcon = styled(LikeEmptySvg)<CommonStyle>`
   width: ${({ $isOpen }) => `${$isOpen ? '24px' : '16px'}`};
   height: ${({ $isOpen }) => `${$isOpen ? '24px' : '16px'}`};
   position: absolute;

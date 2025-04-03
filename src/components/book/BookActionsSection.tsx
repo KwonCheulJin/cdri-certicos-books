@@ -3,25 +3,20 @@ import PriceGroup from '@/components/book/PriceGroup';
 import PurchaseButton from '@/components/book/PurchaseButton';
 import Button from '@/components/common/Button';
 import Typography from '@/components/common/Typography';
-import { CommonProps } from '@/components/search/SearchBookItem';
+import { CommonStyle } from '@/types/common';
 import { BookInfo } from '@/types/search-book';
 import styled from 'styled-components';
 
 interface Props {
-  url: BookInfo['url'];
-  price: BookInfo['price'];
+  book: Pick<BookInfo, 'url' | 'price'>;
   isOpen: boolean;
   onToggle: () => void;
 }
-export default function BookActionsSection({
-  url,
-  price,
-  isOpen,
-  onToggle,
-}: Props) {
+export default function BookActionsSection({ book, isOpen, onToggle }: Props) {
+  const { url, price } = book;
   return (
     <BookActions $isOpen={isOpen}>
-      {!isOpen && (
+      {!isOpen ? (
         <PurchaseSection>
           <Typography variant="title3">
             {price.discounted
@@ -31,12 +26,18 @@ export default function BookActionsSection({
           </Typography>
           <PurchaseButton url={url} isOpen={isOpen} />
         </PurchaseSection>
-      )}
-      <AccordionButton variant="lightGray" size="accordion" onClick={onToggle}>
+      ) : null}
+      <AccordionButton
+        variant="lightGray"
+        size="accordion"
+        onClick={onToggle}
+        aria-expanded={isOpen}
+        aria-label="상세보기"
+      >
         <span>상세보기</span>
         <ArrowDownIcon $isOpen={isOpen} />
       </AccordionButton>
-      {isOpen && (
+      {isOpen ? (
         <PurchaseSection $isOpen={isOpen}>
           <TypographyContainer>
             <PriceGroup
@@ -54,12 +55,12 @@ export default function BookActionsSection({
           </TypographyContainer>
           <PurchaseButton url={url} isOpen={isOpen} />
         </PurchaseSection>
-      )}
+      ) : null}
     </BookActions>
   );
 }
 
-const BookActions = styled.div<CommonProps>`
+const BookActions = styled.div<CommonStyle>`
   display: flex;
   height: ${({ $isOpen }) => `${$isOpen ? '278px' : 'auto'}`};
   align-items: ${({ $isOpen }) => `${$isOpen ? 'end' : 'center'}`};
@@ -68,7 +69,7 @@ const BookActions = styled.div<CommonProps>`
   gap: 8px;
 `;
 
-const PurchaseSection = styled.div<Partial<CommonProps>>`
+const PurchaseSection = styled.div<Partial<CommonStyle>>`
   display: flex;
   align-items: ${({ $isOpen }) => `${$isOpen ? 'end' : 'center'}`};
   flex-direction: ${({ $isOpen }) => `${$isOpen ? 'column' : 'row'}`};
@@ -81,7 +82,7 @@ const AccordionButton = styled(Button)`
   gap: 5px;
 `;
 
-const ArrowDownIcon = styled(ArrowDownSvg)<CommonProps>`
+const ArrowDownIcon = styled(ArrowDownSvg)<CommonStyle>`
   padding-top: ${({ $isOpen }) => `${$isOpen ? '0px' : '4px'}`};
   transform: ${({ $isOpen }) =>
     `${$isOpen ? 'rotate(180deg)' : 'rotate(0deg)'}`};

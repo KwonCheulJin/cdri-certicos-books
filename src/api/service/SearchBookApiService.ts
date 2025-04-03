@@ -1,4 +1,5 @@
 import {
+  Document,
   InfiniteQueryResponse,
   KakaoBookResponse,
   Queries,
@@ -14,7 +15,7 @@ export default class SearchBookApiService extends ApiService {
     query,
     page = 1,
     target,
-  }: Queries): Promise<InfiniteQueryResponse> {
+  }: Queries): Promise<InfiniteQueryResponse<Document>> {
     const response = await this.get<KakaoBookResponse>(
       `/book?query=${query}&page=${page}${target ? `&target=${target}` : ''}`
     );

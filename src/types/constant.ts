@@ -1,21 +1,15 @@
+import { NavItem } from '@/types/common';
 import { ValueOf } from '@/types/utils';
-
-export const screen = {
-  mobile: 600,
-  tablet: 1279,
-  desktop: 1280,
-} as const;
-
-export const breakpoints = {
-  mobile: `${screen.mobile}px`,
-  tablet: `${screen.tablet}px`,
-  desktop: `${screen.desktop}px`,
-} as const;
 
 export const LOCAL_STORAGE_KEY = {
   storedKeywords: 'stored-keywords',
   storedSavedBooks: 'stored-saved-books',
   storedSavedBookIds: 'stored-saved-book-ids',
+} as const;
+
+export const PORTAL_ID = {
+  detailModal: 'detail-modal-portal',
+  history: 'history-portal',
 } as const;
 
 export const SEARCH_CATEGORY_ITEMS = [
@@ -34,6 +28,24 @@ export const MAX_THUMBNAIL_IMAGE = {
   width: 232,
   height: 328,
 } as const;
+
+export const SAVED_BOOK_CONFIG = {
+  PAGE_SIZE: 10,
+  STORAGE_DELAY: 50,
+} as const;
+
+export const NAV_ITEMS: NavItem[] = [
+  {
+    path: '/search',
+    label: '도서 검색',
+    ariaLabel: '도서 검색 페이지로 이동',
+  },
+  {
+    path: '/saved-books',
+    label: '내가 찜한 책',
+    ariaLabel: '찜한 책 목록 페이지로 이동',
+  },
+] as const;
 
 export type SearchCategoryItem = (typeof SEARCH_CATEGORY_ITEMS)[number];
 export type SearchTarget = (typeof SEARCH_CATEGORY_ITEMS)[number]['id'];

@@ -31,8 +31,8 @@ export interface KakaoBookResponse {
   documents: Document[];
 }
 
-export type InfiniteQueryResponse = {
-  content: Document[];
+export type InfiniteQueryResponse<T> = {
+  content: T[];
   nextPage: number;
   isLast: boolean;
   totalCount: number;
