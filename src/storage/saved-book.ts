@@ -1,5 +1,5 @@
 import { LOCAL_STORAGE_KEY } from '@/types/constant';
-import { BookInfo } from '@/types/search-book';
+import { BookInfo } from '@/types/search';
 import { StorageValue } from '@/types/storage';
 import { storageManager } from '@/utils/localStorageManager';
 

@@ -4,7 +4,7 @@ import PurchaseButton from '@/components/book/PurchaseButton';
 import Button from '@/components/common/Button';
 import Typography from '@/components/common/Typography';
 import { CommonStyle } from '@/types/common';
-import { BookInfo } from '@/types/search-book';
+import { BookInfo } from '@/types/search';
 import styled from 'styled-components';
 
 interface Props {

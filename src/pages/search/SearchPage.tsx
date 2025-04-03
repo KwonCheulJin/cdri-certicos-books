@@ -1,19 +1,14 @@
-import BookItem from '@/components/book/BookItem';
-import EmptyBookMessage from '@/components/common/EmptyBookMessage';
-import InfinityScrollSection from '@/components/common/InfinityScrollSection';
+import BookListSection from '@/components/book/BookListSection';
 import PageContainer from '@/components/common/PageContainer';
 import PageTitle from '@/components/common/PageTitle';
-import ResultBooksCountMessage from '@/components/common/ResultBooksCountMessage';
 import BasicSearchContainer from '@/components/search/BasicSearchContainer';
 import DetailSearchContainer from '@/components/search/DetailSearchContainer';
 
 import useSearchInfiniteScroll from '@/components/search/hook/useSearchInfiniteScroll';
-import useAccordion from '@/hook/useAccordion';
 import styled from 'styled-components';
 
 export default function SearchPage() {
   const { data, ref } = useSearchInfiniteScroll();
-  const { openBookId, handleToggle } = useAccordion();
 
   return (
     <PageContainer>
@@ -24,26 +19,13 @@ export default function SearchPage() {
           <DetailSearchContainer />
         </SearchContainer>
       </SearchFormContainer>
-      <ResultBooksCountMessage
+      <BookListSection
         label="도서 검색 결과"
-        totalCount={data?.pages[0].totalCount}
+        data={data}
+        ref={ref}
+        emptyMessage="검색된 결과가 없습니다."
+        fallbackMessage="도서 검색 중 문제가 발생했습니다."
       />
-      {data && data.pages[0].totalCount > 0 ? (
-        <InfinityScrollSection ref={ref}>
-          {data?.pages.map(page =>
-            page.content.map(book => (
-              <BookItem
-                key={book.id}
-                book={book}
-                isOpen={openBookId === book.id}
-                onToggle={handleToggle(book.id)}
-              />
-            ))
-          )}
-        </InfinityScrollSection>
-      ) : (
-        <EmptyBookMessage message="검색된 결과가 없습니다." />
-      )}
     </PageContainer>
   );
 }

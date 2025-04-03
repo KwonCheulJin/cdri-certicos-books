@@ -14,13 +14,32 @@ class LocalStorageManager {
   }
 
   setItem<T>(key: string, value: StorageValue<T>) {
-    localStorage.setItem(key, JSON.stringify(value));
-    this.dispatchUpdateEvent(key, value);
+    try {
+      const existingValue = this.getItem<T>(key);
+      if (JSON.stringify(existingValue) === JSON.stringify(value)) {
+        return;
+      }
+      localStorage.setItem(key, JSON.stringify(value));
+      this.dispatchUpdateEvent(key, value);
+    } catch (error) {
+      console.error(
+        `로컬 스토리지에 "${key}" 키로 데이터를 저장하는 데 실패했습니다:`,
+        error
+      );
+    }
   }
 
   getItem<T>(key: string): T | null {
-    const value = localStorage.getItem(key);
-    return value ? JSON.parse(value) : null;
+    try {
+      const value = localStorage.getItem(key);
+      return value ? JSON.parse(value) : null;
+    } catch (error) {
+      console.error(
+        `로컬 스토리지에서 "${key}" 키의 데이터를 가져오는 데 실패했습니다:`,
+        error
+      );
+      return null;
+    }
   }
 
   private dispatchUpdateEvent<T>(key: string, value: StorageValue<T>) {
@@ -34,7 +53,14 @@ class LocalStorageManager {
   subscribe<T>(key: string, callback: (value: StorageValue<T>) => void) {
     const handleStorageChange = (e: StorageEvent) => {
       if (e.key === key) {
-        callback(e.newValue ? JSON.parse(e.newValue) : null);
+        try {
+          callback(e.newValue ? JSON.parse(e.newValue) : null);
+        } catch (error) {
+          console.error(
+            `로컬 스토리지 이벤트에서 "${key}" 키의 데이터를 파싱하는 데 실패했습니다:`,
+            error
+          );
+        }
       }
     };
 

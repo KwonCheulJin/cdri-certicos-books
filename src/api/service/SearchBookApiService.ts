@@ -3,7 +3,7 @@ import {
   InfiniteQueryResponse,
   KakaoBookResponse,
   Queries,
-} from '@/types/search-book';
+} from '@/types/search';
 import ApiService from './ApiService';
 
 export default class SearchBookApiService extends ApiService {

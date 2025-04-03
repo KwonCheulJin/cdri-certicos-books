@@ -1,7 +1,7 @@
 import BookActionsSection from '@/components/book/BookActionsSection';
 import BookInfoSection from '@/components/book/BookInfoSection';
 import { CommonStyle } from '@/types/common';
-import { BookInfo } from '@/types/search-book';
+import { BookInfo } from '@/types/search';
 import styled from 'styled-components';
 
 interface Props {
