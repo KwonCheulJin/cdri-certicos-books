@@ -1,5 +1,5 @@
 import { SearchTarget, SearchType } from '@/types/constant';
-import { Queries } from '@/types/search-book';
+import { Queries } from '@/types/search';
 import { create } from 'zustand';
 import { immer } from 'zustand/middleware/immer';
 

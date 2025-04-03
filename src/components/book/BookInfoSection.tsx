@@ -3,7 +3,7 @@ import LikeWrapper from '@/components/book/LikeWrapper';
 import Typography from '@/components/common/Typography';
 import { typography } from '@/styles/typography';
 import { CommonStyle } from '@/types/common';
-import { BookInfo } from '@/types/search-book';
+import { BookInfo } from '@/types/search';
 import styled from 'styled-components';
 
 interface Props {

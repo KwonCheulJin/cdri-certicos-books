@@ -1,42 +1,32 @@
 import { searchBookApiService } from '@/api/service/SearchBookApiService';
 import { useSearchStore } from '@/store/useSearchStore';
-import { formatAuthorList } from '@/utils/author';
-import { generateThumbnailUrls } from '@/utils/thumbnail';
+import { QUERY_KEY } from '@/types/constant';
+import { transformSearchData } from '@/utils/search';
 import { useInfiniteQuery } from '@tanstack/react-query';
+import axios from 'axios';
 
 export default function useSearchBook() {
   const { query, target } = useSearchStore(state => state.searchQuery);
   return useInfiniteQuery({
-    queryKey: ['search-book', query, target],
+    queryKey: [QUERY_KEY.searchBook, query, target],
     queryFn: ({ pageParam }) =>
       searchBookApiService.getSearchBooks({
         query,
         page: pageParam,
         target,
       }),
-    select: data => {
-      const updatePages = data.pages.map((book, idx) => {
-        const newContent = book.content.map((item, index) => {
-          return {
-            id: `${item.title}-${idx}-${index}`,
-            title: item.title,
-            author: formatAuthorList(item.authors),
-            contents: item.contents,
-            price: {
-              original: item.price,
-              discounted: item.sale_price < 0 ? undefined : item.sale_price,
-            },
-            thumbnail: generateThumbnailUrls(item.thumbnail),
-            url: item.url,
-          };
-        });
-        return { ...book, content: newContent };
-      });
-      return { ...data, pages: updatePages };
-    },
-    initialPageParam: 1,
+    select: data => transformSearchData(data),
+    initialPageParam: query ? 1 : undefined,
     getNextPageParam: lastPage =>
       !lastPage.isLast ? lastPage.nextPage : undefined,
     enabled: !!query,
+    throwOnError: error => {
+      if (axios.isAxiosError(error)) {
+        console.error(`🔥 [useSearchBook] API Error:`, error.message);
+        const status = error.response?.status ?? 0;
+        return status >= 500;
+      }
+      return false;
+    },
   });
 }

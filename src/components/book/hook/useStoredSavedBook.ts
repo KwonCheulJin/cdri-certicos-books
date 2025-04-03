@@ -1,5 +1,6 @@
 import { savedBookStorage } from '@/storage/saved-book';
-import { BookInfo, InfiniteQueryResponse } from '@/types/search-book';
+import { QUERY_KEY } from '@/types/constant';
+import { BookInfo, InfiniteQueryResponse } from '@/types/search';
 import { getBooksByPage, getTotalPages } from '@/utils/book';
 import { waitFor } from '@/utils/waitFor';
 import { useMutation, useQueryClient } from '@tanstack/react-query';
@@ -24,7 +25,7 @@ export default function useStoredSavedBook() {
       });
     },
     onSuccess: () => {
-      queryClient.invalidateQueries({ queryKey: ['saved-book'] });
+      queryClient.invalidateQueries({ queryKey: [QUERY_KEY.savedBook] });
     },
   });
 

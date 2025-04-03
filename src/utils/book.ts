@@ -1,4 +1,4 @@
-import { BookInfo } from '@/types/search-book';
+import { BookInfo } from '@/types/search';
 
 import { SAVED_BOOK_CONFIG } from '@/types/constant';
 import { SavedBookPage } from '@/types/saved-book';

@@ -1,5 +1,5 @@
 import { SAVED_BOOK_CONFIG } from '@/types/constant';
-import { BookInfo } from '@/types/search-book';
+import { BookInfo } from '@/types/search';
 import { getBooksByPage, getIsLastPage, getTotalPages } from '@/utils/book';
 import { describe, expect, it } from 'vitest';
 

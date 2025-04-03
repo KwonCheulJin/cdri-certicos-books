@@ -1,4 +1,4 @@
-import { BookInfo } from '@/types/search-book';
+import { BookInfo } from '@/types/search';
 
 export interface SavedBookState {
   books: BookInfo[];

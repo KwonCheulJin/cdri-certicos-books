@@ -47,6 +47,11 @@ export const NAV_ITEMS: NavItem[] = [
   },
 ] as const;
 
+export const QUERY_KEY = {
+  searchBook: 'search-book',
+  savedBook: 'saved-book',
+} as const;
+
 export type SearchCategoryItem = (typeof SEARCH_CATEGORY_ITEMS)[number];
 export type SearchTarget = (typeof SEARCH_CATEGORY_ITEMS)[number]['id'];
 

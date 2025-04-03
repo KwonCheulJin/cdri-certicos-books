@@ -1,9 +1,10 @@
 import ArrowDownSvg from '@/assets/arrow-down.svg?react';
 import { typography } from '@/styles/typography';
+import { CommonStyle } from '@/types/common';
 import { SearchCategoryItem } from '@/types/constant';
 import { useSelect } from 'downshift';
 import { Dispatch, SetStateAction } from 'react';
-import styled, { css } from 'styled-components';
+import styled from 'styled-components';
 
 function itemToString(item: SearchCategoryItem | null) {
   return item ? item.value : '';
@@ -82,21 +83,17 @@ const SelectTrigger = styled.button`
   }
 `;
 
-type CommonProps = {
-  $isOpen: boolean;
-};
-const ArrowDownIcon = styled(ArrowDownSvg)<CommonProps>`
+const ArrowDownIcon = styled(ArrowDownSvg)<CommonStyle>`
   box-sizing: border-box;
   width: 20px;
   height: 20px;
   padding: 8px 5.5px 6px 4px;
-  ${({ $isOpen }) => css`
-    transform: ${$isOpen ? 'rotate(180deg)' : 'rotate(0deg)'};
-  `}
+  transform: ${({ $isOpen }) =>
+    `${$isOpen ? 'rotate(180deg)' : 'rotate(0deg)'}`};
   transition: transform 0.3s ease-in-out;
 `;
 
-const SelectList = styled.ul<CommonProps>`
+const SelectList = styled.ul<CommonStyle>`
   position: absolute;
   display: ${({ $isOpen }) => `${$isOpen ? 'flex' : 'none'}`};
   flex-direction: column;
