@@ -20,7 +20,7 @@
 
 ## 폴더 구조 및 주요 코드 설명
 
-<img width="449" alt="tree" src="https://github.com/user-attachments/assets/34e12dad-bac1-4961-90c6-a7b6b5c61677" />
+<img width="449" alt="tree" src="https://github.com/user-attachments/assets/d6f12611-e23e-439e-b96a-77ce7623a7b6" />
 
 ## 라이브러리 선택 이유
 
