@@ -16,18 +16,17 @@ type CustomLinkProps = {
 };
 const CustomLink = styled(Link)<CustomLinkProps>`
   position: relative;
-  color: inherit;
   text-decoration: none;
   min-height: 24px;
 
   ${typography['body1']}
-  ${props => props.theme.text.primary};
+  color: ${props => props.theme.text.primary};
 
   &::after {
     content: '';
     position: absolute;
     left: 0;
-    bottom: 0;
+    bottom: -5px;
     height: 1px;
     background-color: ${props => props.theme.palette.primary};
     transition: width 0.3s ease-in-out;

@@ -3,29 +3,46 @@ import Button from '@/components/common/Button';
 import Typography from '@/components/common/Typography';
 import useBasicSearch from '@/components/search/hook/useBasicSearch';
 import useStoredKeywords from '@/components/search/hook/useStoredKeywords';
+import { PORTAL_ID } from '@/types/constant';
+import { useCallback } from 'react';
 import { createPortal } from 'react-dom';
 import styled from 'styled-components';
 
 export default function SearchHistory() {
-  const { handleFocus } = useBasicSearch();
+  const { handleFocus, handleBlur } = useBasicSearch();
   const { keywords, removeStoredKeyword } = useStoredKeywords();
 
-  const portalElement = document.getElementById('history-portal');
+  const portalElement = document.getElementById(PORTAL_ID.history);
 
   const handleMouseDown = (e: React.MouseEvent) => {
     e.preventDefault(); // 기본 동작 방지하여 포커스 유지
   };
 
+  const handleKeyDown = (e: React.KeyboardEvent) => {
+    if (e.key === 'Escape') {
+      handleBlur();
+    }
+  };
+
+  const handleRemoveKeyword = useCallback(
+    (keyword: string) => {
+      removeStoredKeyword(keyword);
+    },
+    [removeStoredKeyword]
+  );
+
   if (!portalElement) return null;
   return createPortal(
-    <Container onMouseEnter={handleFocus} onMouseDown={handleMouseDown}>
+    <Container
+      onMouseEnter={handleFocus}
+      onMouseDown={handleMouseDown}
+      onKeyDown={handleKeyDown}
+    >
       {keywords.map(keyword => (
         <KeywordItem key={keyword}>
           <Typography variant="caption">{keyword}</Typography>
           <Button
-            onClick={() => {
-              removeStoredKeyword(keyword);
-            }}
+            onClick={() => handleRemoveKeyword(keyword)}
             variant="ghost"
             size="icon"
           >

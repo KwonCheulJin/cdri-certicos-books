@@ -3,8 +3,8 @@ import Button from '@/components/common/Button';
 import Select from '@/components/search/Select';
 
 import { typography } from '@/styles/typography';
-import { SearchCategoryItem } from '@/types/constant';
-import { Dispatch, RefObject, SetStateAction } from 'react';
+import { PORTAL_ID, SearchCategoryItem } from '@/types/constant';
+import { Dispatch, RefObject, SetStateAction, useCallback } from 'react';
 import { createPortal } from 'react-dom';
 import styled from 'styled-components';
 
@@ -25,16 +25,16 @@ export default function DetailSearchModal({
   handleSearch,
   handleModalClose,
 }: Props) {
-  const portalElement = document.getElementById('detail-modal-portal');
+  const portalElement = document.getElementById(PORTAL_ID.detailModal);
 
-  if (!portalElement) return null;
-
-  const onSubmit = () => {
+  const onSubmit = useCallback(() => {
     handleSearch();
     handleModalClose();
-  };
+  }, [handleModalClose, handleSearch]);
+
+  if (!portalElement) return null;
   return createPortal(
-    <ModalContainer>
+    <ModalContainer role="dialog">
       <ButtonContainer onClick={handleModalClose} variant="ghost" size="icon">
         <XmarkSmallSvg />
       </ButtonContainer>

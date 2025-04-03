@@ -44,5 +44,14 @@ export default function useBasicSearch() {
     }
   }, [searchType]);
 
+  useEffect(() => {
+    const inputElement = inputRef.current;
+    return () => {
+      if (inputElement) {
+        inputElement.value = '';
+      }
+    };
+  }, []);
+
   return { inputRef, handleSearch, isFocused, handleFocus, handleBlur };
 }

@@ -16,7 +16,7 @@ export default function DetailSearchContainer() {
   return (
     <>
       <DetailSearchButton handleModalOpen={handleModalOpen} />
-      {isModalOpen && (
+      {isModalOpen ? (
         <DetailSearchModal
           inputRef={inputRef}
           items={items}
@@ -25,7 +25,7 @@ export default function DetailSearchContainer() {
           handleSearch={handleSearch}
           handleModalClose={handleModalClose}
         />
-      )}
+      ) : null}
     </>
   );
 }

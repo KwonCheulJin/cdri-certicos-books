@@ -1,9 +1,4 @@
-type StorageValue = string | number | boolean | object | null;
-
-interface StorageEventDetail {
-  key: string;
-  value: StorageValue;
-}
+import { StorageEventDetail, StorageValue } from '@/types/storage';
 
 class LocalStorageManager {
   private static instance: LocalStorageManager;
@@ -18,7 +13,7 @@ class LocalStorageManager {
     return LocalStorageManager.instance;
   }
 
-  setItem(key: string, value: StorageValue) {
+  setItem<T>(key: string, value: StorageValue<T>) {
     localStorage.setItem(key, JSON.stringify(value));
     this.dispatchUpdateEvent(key, value);
   }
@@ -28,22 +23,22 @@ class LocalStorageManager {
     return value ? JSON.parse(value) : null;
   }
 
-  private dispatchUpdateEvent(key: string, value: StorageValue) {
+  private dispatchUpdateEvent<T>(key: string, value: StorageValue<T>) {
     window.dispatchEvent(
-      new CustomEvent<StorageEventDetail>(this.STORAGE_UPDATE_EVENT, {
+      new CustomEvent<StorageEventDetail<T>>(this.STORAGE_UPDATE_EVENT, {
         detail: { key, value },
       })
     );
   }
 
-  subscribe(key: string, callback: (value: StorageValue) => void) {
+  subscribe<T>(key: string, callback: (value: StorageValue<T>) => void) {
     const handleStorageChange = (e: StorageEvent) => {
       if (e.key === key) {
         callback(e.newValue ? JSON.parse(e.newValue) : null);
       }
     };
 
-    const handleCustomEvent = (e: CustomEvent<StorageEventDetail>) => {
+    const handleCustomEvent = (e: CustomEvent<StorageEventDetail<T>>) => {
       if (e.detail.key === key) {
         callback(e.detail.value);
       }

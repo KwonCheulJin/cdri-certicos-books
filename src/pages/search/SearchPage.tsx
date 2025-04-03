@@ -1,73 +1,52 @@
-import Typography from '@/components/common/Typography';
+import BookItem from '@/components/book/BookItem';
+import EmptyBookMessage from '@/components/common/EmptyBookMessage';
+import InfinityScrollSection from '@/components/common/InfinityScrollSection';
+import PageContainer from '@/components/common/PageContainer';
+import PageTitle from '@/components/common/PageTitle';
+import ResultBooksCountMessage from '@/components/common/ResultBooksCountMessage';
 import BasicSearchContainer from '@/components/search/BasicSearchContainer';
 import DetailSearchContainer from '@/components/search/DetailSearchContainer';
-import EmptySearchBook from '@/components/search/EmptySearchBook';
+
 import useSearchInfiniteScroll from '@/components/search/hook/useSearchInfiniteScroll';
-import SearchBookItem from '@/components/search/SearchBookItem';
-import { theme } from '@/styles/theme';
-import { useState } from 'react';
+import useAccordion from '@/hook/useAccordion';
 import styled from 'styled-components';
 
 export default function SearchPage() {
-  const { data, moreRef } = useSearchInfiniteScroll();
-  const [openBookId, setOpenBookId] = useState<string | null>(null);
-  const handleToggle = (id: string) => () => {
-    setOpenBookId(prev => (prev === id ? null : id));
-  };
+  const { data, ref } = useSearchInfiniteScroll();
+  const { openBookId, handleToggle } = useAccordion();
 
   return (
-    <Container>
+    <PageContainer>
       <SearchFormContainer>
-        <Typography variant="title2" style={{ marginBottom: 16, height: 36 }}>
-          도서 검색
-        </Typography>
+        <PageTitle title="도서 검색" />
         <SearchContainer role="search" aria-label="도서 검색 폼">
           <BasicSearchContainer />
           <DetailSearchContainer />
         </SearchContainer>
       </SearchFormContainer>
-      <SearchResultContainer>
-        <Typography variant="caption">도서 검색 결과</Typography>
-        <ResultCountContainer>
-          <Typography variant="caption">총</Typography>
-          <Typography
-            variant="caption"
-            style={{ color: `${theme.palette.primary}`, marginLeft: 6 }}
-          >
-            {data?.pages[0].totalCount ?? 0}
-          </Typography>
-          <Typography variant="caption">건</Typography>
-        </ResultCountContainer>
-      </SearchResultContainer>
-      {data ? (
-        <>
-          <ul>
-            {data.pages.map(page =>
-              page.content.map(book => (
-                <SearchBookItem
-                  key={book.id}
-                  book={book}
-                  isOpen={openBookId === book.id}
-                  onToggle={handleToggle(book.id)}
-                />
-              ))
-            )}
-          </ul>
-          <div ref={moreRef} />
-        </>
+      <ResultBooksCountMessage
+        label="도서 검색 결과"
+        totalCount={data?.pages[0].totalCount}
+      />
+      {data && data.pages[0].totalCount > 0 ? (
+        <InfinityScrollSection ref={ref}>
+          {data?.pages.map(page =>
+            page.content.map(book => (
+              <BookItem
+                key={book.id}
+                book={book}
+                isOpen={openBookId === book.id}
+                onToggle={handleToggle(book.id)}
+              />
+            ))
+          )}
+        </InfinityScrollSection>
       ) : (
-        <EmptySearchBook />
+        <EmptyBookMessage message="검색된 결과가 없습니다." />
       )}
-    </Container>
+    </PageContainer>
   );
 }
-
-const Container = styled.section`
-  box-sizing: border-box;
-  width: 100%;
-  height: 100%;
-  padding: 80px 0 0 0;
-`;
 
 const SearchFormContainer = styled.div``;
 
@@ -76,11 +55,3 @@ const SearchContainer = styled.div`
   align-items: center;
   gap: 16px;
 `;
-
-const SearchResultContainer = styled.div`
-  display: flex;
-  margin: 25px 0 36px 0;
-  gap: 16px;
-`;
-
-const ResultCountContainer = styled.div``;

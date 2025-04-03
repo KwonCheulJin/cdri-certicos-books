@@ -1,8 +1,8 @@
-import useSavedBook from '@/components/book/hook/useSavedBook';
+import useStoredSavedBook from '@/components/book/hook/useStoredSavedBook';
 import LikeWrapper from '@/components/book/LikeWrapper';
 import Typography from '@/components/common/Typography';
-import { CommonProps } from '@/components/search/SearchBookItem';
 import { typography } from '@/styles/typography';
+import { CommonStyle } from '@/types/common';
 import { BookInfo } from '@/types/search-book';
 import styled from 'styled-components';
 
@@ -12,20 +12,24 @@ interface Props {
 }
 export default function BookInfoSection({ info, isOpen }: Props) {
   const { id, title, author, thumbnail, contents } = info;
-  const { savedBookIds, toggleSavedBookId } = useSavedBook();
+  const { savedBookIds, toggleSavedBook } = useStoredSavedBook();
 
+  const handleToggle = () => {
+    toggleSavedBook(info);
+  };
   return (
     <Container $isOpen={isOpen}>
       <LikeWrapper
         isOpen={isOpen}
         isLike={savedBookIds[id]}
-        onToggleLike={toggleSavedBookId(info)}
+        onToggleLike={handleToggle}
       >
-        <Image
-          $isOpen={isOpen}
+        <img
           src={isOpen ? thumbnail.large : thumbnail.small}
           alt={title}
           loading="lazy"
+          width={isOpen ? 210 : 48}
+          height={isOpen ? 280 : 68}
         />
       </LikeWrapper>
       <BookSection $isOpen={isOpen}>
@@ -42,7 +46,7 @@ export default function BookInfoSection({ info, isOpen }: Props) {
             {author}
           </Typography>
         </BookInfoContainer>
-        {isOpen && (
+        {isOpen ? (
           <>
             <Typography
               variant="body2bold"
@@ -53,30 +57,25 @@ export default function BookInfoSection({ info, isOpen }: Props) {
             </Typography>
             <BookDescription>{contents}</BookDescription>
           </>
-        )}
+        ) : null}
       </BookSection>
     </Container>
   );
 }
 
-const Container = styled.div<CommonProps>`
+const Container = styled.div<CommonStyle>`
   display: flex;
   align-items: ${({ $isOpen }) => `${$isOpen ? 'start' : 'center'}`};
   gap: ${({ $isOpen }) => `${$isOpen ? '32px' : '48px'}`};
 `;
 
-const Image = styled.img<CommonProps>`
-  width: ${({ $isOpen }) => `${$isOpen ? '210px' : '48px'}`};
-  height: ${({ $isOpen }) => `${$isOpen ? '280px' : '68px'}`};
-`;
-
-const BookSection = styled.div<CommonProps>`
+const BookSection = styled.div<CommonStyle>`
   display: flex;
   flex-direction: column;
   padding-top: ${({ $isOpen }) => `${$isOpen ? '20px' : '0px'}`};
 `;
 
-const BookInfoContainer = styled.div<CommonProps>`
+const BookInfoContainer = styled.div<CommonStyle>`
   display: flex;
   align-items: ${({ $isOpen }) => `${$isOpen ? 'start' : 'center'}`};
   gap: 16px;
