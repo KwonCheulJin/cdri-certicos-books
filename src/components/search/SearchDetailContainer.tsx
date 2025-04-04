@@ -1,8 +1,8 @@
-import DetailSearchButton from '@/components/search/DetailSearchButton';
-import DetailSearchModal from '@/components/search/DetailSearchModal';
-import useDetailSearch from '@/components/search/hook/useDetailSearch';
+import SearchDetailButton from '@/components/search/SearchDetailButton';
+import SearchDetailModal from '@/components/search/SearchDetailModal';
+import useSearchDetail from '@/components/search/hook/useSearchDetail';
 
-export default function DetailSearchContainer() {
+export default function SearchDetailContainer() {
   const {
     inputRef,
     handleSearch,
@@ -12,12 +12,12 @@ export default function DetailSearchContainer() {
     items,
     selectedItem,
     setSelectedItem,
-  } = useDetailSearch();
+  } = useSearchDetail();
   return (
     <>
-      <DetailSearchButton handleModalOpen={handleModalOpen} />
+      <SearchDetailButton handleModalOpen={handleModalOpen} />
       {isModalOpen ? (
-        <DetailSearchModal
+        <SearchDetailModal
           inputRef={inputRef}
           items={items}
           selectedItem={selectedItem}

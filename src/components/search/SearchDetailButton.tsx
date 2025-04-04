@@ -5,7 +5,7 @@ import styled from 'styled-components';
 interface Props {
   handleModalOpen: () => void;
 }
-export default function DetailSearchButton({ handleModalOpen }: Props) {
+export default function SearchDetailButton({ handleModalOpen }: Props) {
   return (
     <Container>
       <Button

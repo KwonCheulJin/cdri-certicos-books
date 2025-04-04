@@ -52,6 +52,17 @@ export const QUERY_KEY = {
   savedBook: 'saved-book',
 } as const;
 
+export const IMAGE_SIZE = {
+  closed: {
+    width: '48',
+    height: '68',
+  },
+  open: {
+    width: '210',
+    height: '280',
+  },
+} as const;
+
 export type SearchCategoryItem = (typeof SEARCH_CATEGORY_ITEMS)[number];
 export type SearchTarget = (typeof SEARCH_CATEGORY_ITEMS)[number]['id'];
 

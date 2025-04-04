@@ -1,9 +1,9 @@
 import BookItem from '@/components/book/BookItem';
-import EmptyBookMessage from '@/components/common/EmptyBookMessage';
+import EmptyBookMessage from '@/components/book/EmptyBookMessage';
+import useAccordion from '@/components/book/hook/useAccordion';
+import ResultBooksCountMessage from '@/components/book/ResultBooksCountMessage';
 import ErrorBoundary from '@/components/common/ErrorBoundary';
 import InfinityScrollSection from '@/components/common/InfinityScrollSection';
-import ResultBooksCountMessage from '@/components/common/ResultBooksCountMessage';
-import useAccordion from '@/hook/useAccordion';
 import { BookInfo, InfiniteQueryResponse } from '@/types/search';
 import { InfiniteData } from '@tanstack/react-query';
 import { ReactNode } from 'react';
