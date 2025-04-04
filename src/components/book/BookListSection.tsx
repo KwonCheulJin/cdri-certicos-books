@@ -3,7 +3,7 @@ import EmptyBookMessage from '@/components/book/EmptyBookMessage';
 import useAccordion from '@/components/book/hook/useAccordion';
 import ResultBooksCountMessage from '@/components/book/ResultBooksCountMessage';
 import ErrorBoundary from '@/components/common/ErrorBoundary';
-import InfinityScrollSection from '@/components/common/InfinityScrollSection';
+import InfiniteScrollSection from '@/components/common/InfiniteScrollSection';
 import { BookInfo, InfiniteQueryResponse } from '@/types/search';
 import { InfiniteData } from '@tanstack/react-query';
 import { ReactNode } from 'react';
@@ -32,7 +32,7 @@ export default function BookListSection({
         totalCount={data?.pages[0].totalCount}
       />
       {data && data.pages[0].totalCount > 0 ? (
-        <InfinityScrollSection ref={ref}>
+        <InfiniteScrollSection ref={ref}>
           {data.pages.map(page =>
             page.content.map(book => (
               <BookItem
@@ -43,7 +43,7 @@ export default function BookListSection({
               />
             ))
           )}
-        </InfinityScrollSection>
+        </InfiniteScrollSection>
       ) : (
         <EmptyBookMessage message={emptyMessage} />
       )}

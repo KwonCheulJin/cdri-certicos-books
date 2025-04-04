@@ -3,7 +3,7 @@ import { PropsWithChildren } from 'react';
 interface Props extends PropsWithChildren {
   ref: (node?: Element | null) => void;
 }
-export default function InfinityScrollSection({ ref, children }: Props) {
+export default function InfiniteScrollSection({ ref, children }: Props) {
   return (
     <ul>
       {children}
