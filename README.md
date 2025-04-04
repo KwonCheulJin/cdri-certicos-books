@@ -72,7 +72,7 @@
       - 공용 버튼 컴포넌트
     - [ErrorBoundary.tsx](./src/components/common/ErrorBoundary.tsx)
       - 에러 발생 시 폴백 UI 제공 컴포넌트
-    - [InfinityScrollSection.tsx](./src/components/common/InfinityScrollSection.tsx)
+    - [InfiniteScrollSection.tsx](./src/components/common/InfiniteScrollSection.tsx)
       - 무한 스크롤 구역 컴포넌트
     - [NavBar.tsx](./src/components/common/NavBar.tsx)
       - 헤더 네비게이션 컴포넌트
