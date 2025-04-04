@@ -1,7 +1,7 @@
 import XmarkSvg from '@/assets/xmark.svg?react';
 import Button from '@/components/common/Button';
 import Typography from '@/components/common/Typography';
-import useBasicSearch from '@/components/search/hook/useBasicSearch';
+import useSearchBasic from '@/components/search/hook/useSearchBasic';
 import useStoredKeywords from '@/components/search/hook/useStoredKeywords';
 import { PORTAL_ID } from '@/types/constant';
 import { useCallback } from 'react';
@@ -9,7 +9,7 @@ import { createPortal } from 'react-dom';
 import styled from 'styled-components';
 
 export default function SearchHistory() {
-  const { handleFocus, handleBlur } = useBasicSearch();
+  const { handleFocus, handleBlur } = useSearchBasic();
   const { keywords, removeStoredKeyword } = useStoredKeywords();
 
   const portalElement = document.getElementById(PORTAL_ID.history);
