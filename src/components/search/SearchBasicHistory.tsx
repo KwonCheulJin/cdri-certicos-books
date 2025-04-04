@@ -8,7 +8,7 @@ import { useCallback } from 'react';
 import { createPortal } from 'react-dom';
 import styled from 'styled-components';
 
-export default function SearchHistory() {
+export default function SearchBasicHistory() {
   const { handleFocus, handleBlur } = useSearchBasic();
   const { keywords, removeStoredKeyword } = useStoredKeywords();
 

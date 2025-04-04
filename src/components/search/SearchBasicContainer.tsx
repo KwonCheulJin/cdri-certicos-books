@@ -1,7 +1,7 @@
 import useSearchBasic from '@/components/search/hook/useSearchBasic';
 import useStoredKeywords from '@/components/search/hook/useStoredKeywords';
+import SearchBasicHistory from '@/components/search/SearchBasicHistory';
 import SearchBasicInput from '@/components/search/SearchBasicInput';
-import SearchHistory from '@/components/search/SearchHistory';
 import { PORTAL_ID } from '@/types/constant';
 import { useMemo } from 'react';
 import styled from 'styled-components';
@@ -29,7 +29,7 @@ export default function BasicSearchContainer() {
         />
         <div id={PORTAL_ID.history} />
       </Container>
-      {isVisible && <SearchHistory />}
+      {isVisible && <SearchBasicHistory />}
     </>
   );
 }

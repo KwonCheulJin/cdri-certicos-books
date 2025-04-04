@@ -1,7 +1,6 @@
 import XmarkSmallSvg from '@/assets/xmark-small.svg?react';
 import Button from '@/components/common/Button';
-import Select from '@/components/search/Select';
-
+import SearchDetailSelect from '@/components/search/SearchDetailSelect';
 import { typography } from '@/styles/typography';
 import { PORTAL_ID, SearchCategoryItem } from '@/types/constant';
 import { Dispatch, RefObject, SetStateAction, useCallback } from 'react';
@@ -39,7 +38,7 @@ export default function SearchDetailModal({
         <XmarkSmallSvg />
       </ButtonContainer>
       <SearchContainer>
-        <Select
+        <SearchDetailSelect
           items={items}
           selectedItem={selectedItem}
           setSelectedItem={setSelectedItem}
