@@ -42,6 +42,7 @@
   - [xmark-small.svg](./src/assets/xmark-small.svg)
   - [xmark.svg](./src/assets/xmark.svg)
 - [components/](./src/components)
+
   - [book/](./src/components/book)
     - [hook/](./src/components/book/hook)
       - [useAccordion.ts](./src/hook/useAccordion.ts)
@@ -101,16 +102,17 @@
       - 도서 검색(기본 검색) 컨테이너 컴포넌트
     - [SearchBasicInput.tsx](./src/components/search/SearchBasicInput.tsx)
       - 도서 검색(기본 검색) 인풋 컴포넌트
+    - [SearchBasicHistory.tsx](./src/components/search/SearchBasicHistory.tsx)
+      - 도서 검색(기본 검색) 검색 내역 히스토리 컴포넌트
     - [SearchDetailButton.tsx](./src/components/search/SearchDetailButton.tsx)
       - 도서 검색(상세 검색) 버튼 컴포넌트
     - [SearchDetailContainer.tsx](./src/components/search/SearchDetailContainer.tsx)
       - 도서 검색(상세 검색) 컨테이터 컴포넌트
     - [SearchDetailModal.tsx](./src/components/search/SearchDetailModal.tsx)
       - 도서 검색(상세 검색) 모달 컴포넌트
-    - [SearchHistory.tsx](./src/components/search/SearchHistory.tsx)
-      - 도서 검색(기본 검색) 검색 내역 히스토리 컴포넌트
-    - [Select.tsx](./src/components/search/Select.tsx)
+    - [SearchDetailSelect.tsx](./src/components/search/SearchDetailSelect.tsx)
       - 도서 검색(상세 검색) 필터 셀랙트 컴포넌트
+
 - [pages/](./src/pages)
   - [saved-books/](./src/pages/saved-books)
     - [SavedBooksPage.tsx](./src/pages/saved-books/SavedBooksPage.tsx)

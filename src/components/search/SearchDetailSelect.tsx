@@ -15,7 +15,7 @@ interface Props {
   selectedItem: SearchCategoryItem;
   setSelectedItem: Dispatch<SetStateAction<SearchCategoryItem>>;
 }
-export default function Select({
+export default function SearchDetailSelect({
   items,
   selectedItem,
   setSelectedItem,
