@@ -17,7 +17,7 @@ interface Props {
   handleModalClose: () => void;
 }
 
-export default function DetailSearchModal({
+export default function SearchDetailModal({
   inputRef,
   items,
   selectedItem,

@@ -1,6 +1,6 @@
-import BasicSearchInput from '@/components/search/BasicSearchInput';
-import useBasicSearch from '@/components/search/hook/useBasicSearch';
+import useSearchBasic from '@/components/search/hook/useSearchBasic';
 import useStoredKeywords from '@/components/search/hook/useStoredKeywords';
+import SearchBasicInput from '@/components/search/SearchBasicInput';
 import SearchHistory from '@/components/search/SearchHistory';
 import { PORTAL_ID } from '@/types/constant';
 import { useMemo } from 'react';
@@ -8,7 +8,7 @@ import styled from 'styled-components';
 
 export default function BasicSearchContainer() {
   const { inputRef, handleSearch, isFocused, handleFocus, handleBlur } =
-    useBasicSearch();
+    useSearchBasic();
   const { keywords } = useStoredKeywords();
   const isVisible = useMemo(
     () => keywords.length > 0 && isFocused,
@@ -17,7 +17,7 @@ export default function BasicSearchContainer() {
   return (
     <>
       <Container>
-        <BasicSearchInput
+        <SearchBasicInput
           ref={inputRef}
           type="text"
           onKeyDown={handleSearch}

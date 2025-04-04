@@ -3,6 +3,7 @@ import LikeWrapper from '@/components/book/LikeWrapper';
 import Typography from '@/components/common/Typography';
 import { typography } from '@/styles/typography';
 import { CommonStyle } from '@/types/common';
+import { IMAGE_SIZE } from '@/types/constant';
 import { BookInfo } from '@/types/search';
 import styled from 'styled-components';
 
@@ -28,8 +29,8 @@ export default function BookInfoSection({ info, isOpen }: Props) {
           src={isOpen ? thumbnail.large : thumbnail.small}
           alt={title}
           loading="lazy"
-          width={isOpen ? 210 : 48}
-          height={isOpen ? 280 : 68}
+          width={isOpen ? IMAGE_SIZE.open.width : IMAGE_SIZE.closed.width}
+          height={isOpen ? IMAGE_SIZE.open.height : IMAGE_SIZE.closed.height}
         />
       </LikeWrapper>
       <BookSection $isOpen={isOpen}>

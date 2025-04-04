@@ -1,8 +1,8 @@
 import BookListSection from '@/components/book/BookListSection';
 import PageContainer from '@/components/common/PageContainer';
 import PageTitle from '@/components/common/PageTitle';
-import BasicSearchContainer from '@/components/search/BasicSearchContainer';
-import DetailSearchContainer from '@/components/search/DetailSearchContainer';
+import SearchBasicContainer from '@/components/search/SearchBasicContainer';
+import SearchDetailContainer from '@/components/search/SearchDetailContainer';
 
 import useSearchInfiniteScroll from '@/components/search/hook/useSearchInfiniteScroll';
 import styled from 'styled-components';
@@ -15,8 +15,8 @@ export default function SearchPage() {
       <SearchFormContainer>
         <PageTitle title="도서 검색" />
         <SearchContainer role="search" aria-label="도서 검색 폼">
-          <BasicSearchContainer />
-          <DetailSearchContainer />
+          <SearchBasicContainer />
+          <SearchDetailContainer />
         </SearchContainer>
       </SearchFormContainer>
       <BookListSection

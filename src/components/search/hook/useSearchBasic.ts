@@ -2,7 +2,7 @@ import useStoredKeywords from '@/components/search/hook/useStoredKeywords';
 import { useSearchStore } from '@/store/useSearchStore';
 import { KeyboardEvent, useCallback, useEffect, useRef, useState } from 'react';
 
-export default function useBasicSearch() {
+export default function useSearchBasic() {
   const inputRef = useRef<HTMLInputElement>(null);
   const [isFocused, setIsFocused] = useState(false);
   const { setStoredKeywords } = useStoredKeywords();

@@ -6,7 +6,7 @@ import styled from 'styled-components';
 interface Props extends ComponentProps<'input'> {
   isSearchHistory: boolean;
 }
-export default function BasicSearchInput({ isSearchHistory, ...props }: Props) {
+export default function SearchBasicInput({ isSearchHistory, ...props }: Props) {
   return (
     <Container $isSearchHistory={isSearchHistory}>
       <SearchIcon />

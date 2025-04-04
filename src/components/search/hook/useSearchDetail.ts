@@ -4,7 +4,7 @@ import { useCallback, useEffect, useRef, useState } from 'react';
 
 const initialSelectedItem = SEARCH_CATEGORY_ITEMS[0];
 
-export default function useDetailSearch() {
+export default function useSearchDetail() {
   const inputRef = useRef<HTMLInputElement>(null);
   const [isModalOpen, setIsModalOpen] = useState(false);
   const [selectedItem, setSelectedItem] =
