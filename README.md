@@ -107,11 +107,11 @@
     - [SearchDetailButton.tsx](./src/components/search/SearchDetailButton.tsx)
       - 도서 검색(상세 검색) 버튼 컴포넌트
     - [SearchDetailContainer.tsx](./src/components/search/SearchDetailContainer.tsx)
-      - 도서 검색(상세 검색) 컨테이터 컴포넌트
+      - 도서 검색(상세 검색) 컨테이너 컴포넌트
     - [SearchDetailModal.tsx](./src/components/search/SearchDetailModal.tsx)
       - 도서 검색(상세 검색) 모달 컴포넌트
     - [SearchDetailSelect.tsx](./src/components/search/SearchDetailSelect.tsx)
-      - 도서 검색(상세 검색) 필터 셀랙트 컴포넌트
+      - 도서 검색(상세 검색) 필터 셀렉트 컴포넌트
 
 - [pages/](./src/pages)
   - [saved-books/](./src/pages/saved-books)
@@ -295,5 +295,18 @@
   - 검색 히스토리와 내가 찜한 책 기능에서 localStorage를 활용하여 브라우저가 종료 되었어도 데이터가 지워지지 않게 하는 기능을 구현하기 위해서 localStorageManager를 싱글톤 패턴으로 구현하여 불필요한 객체 생성을 방지하고, 메모리를 효율적으로 관리할 수 있도록 하였습니다. 또한, 이벤트 리스너를 활용하여 여러 컴포넌트에서 로컬 스토리지 변경 사항을 실시간으로 감지할 수 있도록 구현하였습니다.
 
 - useStoredSavedBook(localStorage 데이터)과 react-query를 활용한 데이터 패치 기능
+
   - 내가 찜한 책 페이지에서도 도서 검색 기능과 동일하게 무한 스크롤을 적용하여 페이지당 10개의 아이템만 가져오도록 구현하였습니다.
   - 이때 사용된 데이터는 localStorage의 찜한 책 데이터를 가지고 활용하였는데 도서 검색에서 찜하기 기능과 내가 찜한 책 찜하기 기능이 동일하지만 도서 검색에서는 찜하기 기능만 동작해야하는 반면 내가 찜한 책에서는 찜하기를 해제했을 때 리스트에서 사라져야 한다는 부분을 염두해서 실시간 성을 보장하기 위해 react-query의 useMutation을 활용해서 POST api를 호출하는 방식으로 기능을 구현해보았습니다.
+
+- 유틸리티 함수 단위 테스트 작성
+  - 각 도메인에서 활용하는 유틸리티 함수의 신뢰성을 높이기 위해 `vitest`를 활용하여 단위 테스트를 작성하였습니다.
+    - `describe`와 `test` 블록을 활용하여 각 함수의 입력값과 예상 출력을 검증하였습니다.
+  - `book.test.ts`
+    - `getIsLastPage`: 로컬스토리지 데이터에서 마지막 페이지 여부를 판별
+    - `getBooksByPage`: 저장된 찜한 책 데이터를 페이지 단위로 분할
+    - `getTotalPages`: 찜한 책 데이터 전체의 총 페이지 수 계산
+  - `search.test.ts`
+    - `formatAuthorList`: 검색 API 응답에서 저자 목록을 형식에 맞게 변환
+    - `generateThumbnailUrls`: 책 데이터에서 썸네일 URL을 작은 사이즈와 큰 사이즈 생성
+    - `transformSearchData`: 검색 API 응답 데이터를 프론트엔드에서 사용할 형태로 변환
