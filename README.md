@@ -30,9 +30,9 @@
       - 도서 검색 데이터를 불러오는 API 요청 훅
   - [service/](./src/api/service)
     - [ApiService.ts](./src/api/service/ApiService.ts)
-      - 싱글톤 ApiService class
+      - 기본 ApiService 클래스(싱글톤)
     - [SearchBookApiService.ts](./src/api/service/SearchBookApiService.ts)
-      - 도서 검색 ApiService class
+      - 도서 검색 ApiService 클래스
 - [assets/](./src/assets)
   - [arrow-down-large.svg](./src/assets/arrow-down-large.svg)
   - [arrow-down.svg](./src/assets/arrow-down.svg)
@@ -46,7 +46,7 @@
   - [book/](./src/components/book)
     - [hook/](./src/components/book/hook)
       - [useAccordion.ts](./src/hook/useAccordion.ts)
-        - 도서 검색 / 내가 찜한 책 아이템 아코디언 기능 hook
+        - 도서 검색 / 내가 찜한 책 아이템 아코디언 기능 훅
       - [useStoredSavedBook.ts](./src/components/book/hook/useStoredSavedBook.ts)
         - 도서 검색 찜하기 기능 / 내가 찜한 책 데이터 저장 / 내가 찜한 책 찜하기 해제 업데이트 종합 hook
     - [BookActionsSection.tsx](./src/components/book/BookActionsSection.tsx)
@@ -87,17 +87,17 @@
   - [saved-book/](./src/components/saved-book)
     - [hook/](./src/components/saved-book/hook)
       - [useSavedBookInfiniteScroll.ts](./src/components/saved-book/hook/useSavedBookInfiniteScroll.ts)
-        - 내가 찜한 책 무한 스크롤 관련 hook
+        - 내가 찜한 책 무한 스크롤 관련 훅
   - [search/](./src/components/search)
     - [hook/](./src/components/search/hook)
       - [useSearchBasic.ts](./src/components/search/hook/useSearchBasic.ts)
-        - 도서 검색(기본 검색) 로직 hook
+        - 도서 검색(기본 검색) 로직 훅
       - [useSearchDetail.ts](./src/components/search/hook/useSearchDetail.ts)
-        - 도서 검색(상세 검색) 로직 hook
+        - 도서 검색(상세 검색) 로직 훅
       - [useSearchInfiniteScroll.ts](./src/components/search/hook/useSearchInfiniteScroll.ts)
-        - 도서 검색 무한 스크롤 관련 hook
+        - 도서 검색 무한 스크롤 관련 훅
       - [useStoredKeywords.ts](./src/components/search/hook/useStoredKeywords.ts)
-        - 도서 검색 내역 히스토리 관련 hook
+        - 도서 검색 내역 히스토리 관련 훅
     - [SearchBasicContainer.tsx](./src/components/search/SearchBasicContainer.tsx)
       - 도서 검색(기본 검색) 컨테이너 컴포넌트
     - [SearchBasicInput.tsx](./src/components/search/SearchBasicInput.tsx)
